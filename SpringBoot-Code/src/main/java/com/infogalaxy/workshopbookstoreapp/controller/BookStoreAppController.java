@@ -1,6 +1,7 @@
 package com.infogalaxy.workshopbookstoreapp.controller;
 
 import com.infogalaxy.workshopbookstoreapp.dto.CustomerRegisterDTO;
+import com.infogalaxy.workshopbookstoreapp.entity.CustomerRegisterEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -24,7 +25,8 @@ public class BookStoreAppController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<CustomerRegisterDTO> addCustomer(@Valid @RequestBody CustomerRegisterDTO customerRegisterDTO) {
-        return new ResponseEntity<>(customerRegisterDTO, HttpStatus.OK);
+    public ResponseEntity<CustomerRegisterEntity> addCustomer(@Valid @RequestBody CustomerRegisterDTO customerRegisterDTO) {
+        CustomerRegisterEntity customerRegisterEntity = new CustomerRegisterEntity(customerRegisterDTO);
+        return new ResponseEntity<>(customerRegisterEntity, HttpStatus.OK);
     }
 }
