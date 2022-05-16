@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping("/bookstoreapp/api")
 public class BookStoreAppController {
@@ -22,7 +24,7 @@ public class BookStoreAppController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<CustomerRegisterDTO> addCustomer(@RequestBody CustomerRegisterDTO customerRegisterDTO) {
+    public ResponseEntity<CustomerRegisterDTO> addCustomer(@Valid @RequestBody CustomerRegisterDTO customerRegisterDTO) {
         return new ResponseEntity<>(customerRegisterDTO, HttpStatus.OK);
     }
 }
