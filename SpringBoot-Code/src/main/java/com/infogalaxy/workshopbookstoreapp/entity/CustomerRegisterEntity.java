@@ -5,10 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GeneratorType;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
@@ -51,7 +48,9 @@ public class CustomerRegisterEntity {
     @Email(message = "Email ID should be of Proper format.")
     private String emailId;
 
+    @Column(columnDefinition = "boolean default false")
     private Boolean verify;
+
     private LocalDate purchaseDate;
     private LocalDate expiryDate;
 

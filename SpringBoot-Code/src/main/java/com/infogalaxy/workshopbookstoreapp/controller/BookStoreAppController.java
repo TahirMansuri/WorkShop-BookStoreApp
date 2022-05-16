@@ -2,6 +2,8 @@ package com.infogalaxy.workshopbookstoreapp.controller;
 
 import com.infogalaxy.workshopbookstoreapp.dto.CustomerRegisterDTO;
 import com.infogalaxy.workshopbookstoreapp.entity.CustomerRegisterEntity;
+import com.infogalaxy.workshopbookstoreapp.service.BookStoreAppServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,6 +17,9 @@ import javax.validation.Valid;
 @RequestMapping("/bookstoreapp/api")
 public class BookStoreAppController {
 
+    @Autowired
+    BookStoreAppServiceImpl bookStoreAppService;
+
     /***
      * Handling REST API call for home
      * @return
@@ -26,7 +31,6 @@ public class BookStoreAppController {
 
     @PostMapping("/add")
     public ResponseEntity<CustomerRegisterEntity> addCustomer(@Valid @RequestBody CustomerRegisterDTO customerRegisterDTO) {
-        CustomerRegisterEntity customerRegisterEntity = new CustomerRegisterEntity(customerRegisterDTO);
-        return new ResponseEntity<>(customerRegisterEntity, HttpStatus.OK);
+        return new ResponseEntity<>(bookStoreAppService.addCustomer(customerRegisterDTO), HttpStatus.OK);
     }
 }
